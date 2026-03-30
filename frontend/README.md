@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TradeFlow AI Frontend
 
-## Getting Started
+Interface Next.js du projet TRADEFLOW-AI.
 
-First, run the development server:
+## Stack
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Recharts
+
+## Prérequis
+
+- Node.js 20+
+- npm
+
+## Configuration
+
+Créer un fichier `frontend/.env.local` :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_API_URL=http://localhost:5000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Développement local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd /home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/frontend
+npm ci
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+App accessible sur `http://localhost:3000`.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` : mode développement
+- `npm run lint` : lint
+- `npm run build` : build production
+- `npm run start` : lancer build production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Déploiement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel
 
-## Deploy on Vercel
+Le fichier racine `/home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/vercel.json` configure :
+- `rootDirectory: frontend`
+- commandes install/build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Variable requise :
+- `NEXT_PUBLIC_API_URL=https://<backend-public>`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Netlify
+
+Le fichier racine `/home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/netlify.toml` configure :
+- `base = "frontend"`
+- plugin Next.js Netlify
+
+Variable requise :
+- `NEXT_PUBLIC_API_URL=https://<backend-public>`
+
+## Notes
+
+- Le frontend ne doit jamais contenir de secret privé.
+- La variable `NEXT_PUBLIC_*` est exposée côté client, uniquement pour les URL/API publiques.
