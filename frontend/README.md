@@ -25,7 +25,7 @@ NEXT_PUBLIC_API_URL=http://localhost:5000
 ## Développement local
 
 ```bash
-cd /home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/frontend
+cd frontend
 npm ci
 npm run dev
 ```
@@ -43,7 +43,7 @@ App accessible sur `http://localhost:3000`.
 
 ### Vercel
 
-Le fichier racine `/home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/vercel.json` configure :
+Le fichier racine `vercel.json` configure :
 - `rootDirectory: frontend`
 - commandes install/build
 
@@ -52,7 +52,7 @@ Variable requise :
 
 ### Netlify
 
-Le fichier racine `/home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/netlify.toml` configure :
+Le fichier racine `netlify.toml` configure :
 - `base = "frontend"`
 - plugin Next.js Netlify
 

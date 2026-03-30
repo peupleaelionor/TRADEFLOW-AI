@@ -56,7 +56,7 @@ Santé service :
 ### Option 1 — Docker (recommandé)
 
 ```bash
-cp /home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/.env.example /home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/.env
+cp .env.example .env
 docker compose up --build
 ```
 
@@ -68,14 +68,14 @@ Accès :
 
 Backend :
 ```bash
-cd /home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/backend
+cd backend
 npm ci
 npm run dev
 ```
 
 Frontend :
 ```bash
-cd /home/runner/work/TRADEFLOW-AI/TRADEFLOW-AI/frontend
+cd frontend
 npm ci
 npm run dev
 ```

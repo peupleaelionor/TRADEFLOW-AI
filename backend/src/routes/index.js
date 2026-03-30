@@ -46,6 +46,13 @@ function buildApiRouter() {
   router.use('/copy', copyRoutes);
   router.use('/settings', settingsRoutes);
 
+  router.use((req, res) => {
+    res.status(404).json({
+      error: 'API route not found',
+      path: req.originalUrl,
+    });
+  });
+
   return router;
 }
 

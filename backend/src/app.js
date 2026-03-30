@@ -33,13 +33,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/api', (req, res) => {
-  res.status(404).json({
-    error: 'API route not found',
-    path: req.originalUrl,
-  });
-});
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal server error' });
