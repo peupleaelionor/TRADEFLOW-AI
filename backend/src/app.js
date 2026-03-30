@@ -6,6 +6,15 @@ const { apiLimiter } = require('./middleware/rateLimiter');
 
 dotenv.config();
 
+// Provide a default development secret if JWT_SECRET is not set
+if (!process.env.JWT_SECRET) {
+  if (process.env.NODE_ENV === 'production') {
+    console.error('FATAL: JWT_SECRET environment variable is required in production');
+    process.exit(1);
+  }
+  process.env.JWT_SECRET = 'tradeflow-dev-secret-change-in-production';
+}
+
 const authRoutes = require('./routes/auth');
 const botsRoutes = require('./routes/bots');
 const tradesRoutes = require('./routes/trades');
