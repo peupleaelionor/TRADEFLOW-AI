@@ -22,8 +22,8 @@ export default function BotsPage() {
         <button className="px-4 py-2 rounded-lg text-sm font-semibold transition-all hover:opacity-90" style={{ background: '#6366F1', color: '#fff' }}>+ New Bot</button>
       </div>
 
-      <div className="rounded-2xl border border-gray-800 overflow-hidden" style={{ background: '#111113' }}>
-        <table className="w-full">
+      <div className="rounded-2xl border border-gray-800 overflow-x-auto" style={{ background: '#111113' }}>
+        <table className="w-full min-w-[640px]">
           <thead>
             <tr className="border-b border-gray-800">
               {['Bot', 'Strategy', 'Pair', 'Status', 'PnL', 'Trades', 'Action'].map(h => (

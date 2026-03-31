@@ -21,8 +21,8 @@ export default function CopyTradingPage() {
       <h2 className="text-2xl font-bold">Copy Trading</h2>
       <p className="text-sm text-gray-400">Follow top-performing traders and automatically replicate their strategies.</p>
 
-      <div className="rounded-2xl border border-gray-800 overflow-hidden" style={{ background: '#111113' }}>
-        <table className="w-full">
+      <div className="rounded-2xl border border-gray-800 overflow-x-auto" style={{ background: '#111113' }}>
+        <table className="w-full min-w-[700px]">
           <thead>
             <tr className="border-b border-gray-800">
               {['Rank', 'Trader', 'Total Profit', 'Win Rate', '30d Return', 'Followers', 'Action'].map(h => (
