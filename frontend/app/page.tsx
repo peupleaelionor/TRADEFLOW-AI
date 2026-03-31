@@ -143,7 +143,7 @@ export default function Home() {
       <footer className="border-t border-gray-800 py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-lg font-bold" style={{ color: '#6366F1' }}>TradeFlow AI</span>
-          <p className="text-sm text-gray-500">© 2024 TradeFlow AI. All rights reserved.</p>
+          <p className="text-sm text-gray-500">© {new Date().getFullYear()} TradeFlow AI. All rights reserved.</p>
           <div className="flex gap-6 text-sm text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>

@@ -1,5 +1,31 @@
 'use client'
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+
+const AreaChart = dynamic(
+  () => import('recharts').then(mod => mod.AreaChart),
+  { ssr: false }
+)
+const Area = dynamic(
+  () => import('recharts').then(mod => mod.Area),
+  { ssr: false }
+)
+const ResponsiveContainer = dynamic(
+  () => import('recharts').then(mod => mod.ResponsiveContainer),
+  { ssr: false }
+)
+const XAxis = dynamic(
+  () => import('recharts').then(mod => mod.XAxis),
+  { ssr: false }
+)
+const YAxis = dynamic(
+  () => import('recharts').then(mod => mod.YAxis),
+  { ssr: false }
+)
+const Tooltip = dynamic(
+  () => import('recharts').then(mod => mod.Tooltip),
+  { ssr: false }
+)
 
 const pnlData = [
   { date: 'Jan', pnl: 1200 }, { date: 'Feb', pnl: 1800 }, { date: 'Mar', pnl: 1400 },
@@ -23,6 +49,31 @@ const statCards = [
   { label: 'Win Rate', value: '68%', change: '+3% this month', up: true },
 ]
 
+function ChartSkeleton() {
+  return (
+    <div className="h-[220px] w-full rounded-lg animate-pulse" style={{ background: '#1a1a1c' }} />
+  )
+}
+
+function PnlChart() {
+  return (
+    <ResponsiveContainer width="100%" height={220}>
+      <AreaChart data={pnlData}>
+        <defs>
+          <linearGradient id="pnlGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#6366F1" stopOpacity={0.3} />
+            <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <XAxis dataKey="date" tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} />
+        <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} />
+        <Tooltip contentStyle={{ background: '#1a1a1c', border: '1px solid #374151', borderRadius: '8px', color: '#fff' }} />
+        <Area type="monotone" dataKey="pnl" stroke="#6366F1" fill="url(#pnlGrad)" strokeWidth={2} />
+      </AreaChart>
+    </ResponsiveContainer>
+  )
+}
+
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
@@ -43,20 +94,9 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 p-6 rounded-2xl border border-gray-800" style={{ background: '#111113' }}>
           <h3 className="font-semibold mb-4">PnL Over Time</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <AreaChart data={pnlData}>
-              <defs>
-                <linearGradient id="pnlGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#6366F1" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="date" tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: '#1a1a1c', border: '1px solid #374151', borderRadius: '8px', color: '#fff' }} />
-              <Area type="monotone" dataKey="pnl" stroke="#6366F1" fill="url(#pnlGrad)" strokeWidth={2} />
-            </AreaChart>
-          </ResponsiveContainer>
+          <Suspense fallback={<ChartSkeleton />}>
+            <PnlChart />
+          </Suspense>
         </div>
 
         <div className="p-6 rounded-2xl border border-gray-800" style={{ background: '#111113' }}>
